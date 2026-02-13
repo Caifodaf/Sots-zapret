@@ -1,0 +1,29 @@
+[versions]
+androidx-lifecycle = "2.9.0"
+composeHotReload = "1.0.0-beta04"
+compose-multiplatform = "1.8.1"
+kotlin = "2.1.21"
+kotlinx-coroutines = "1.10.2"
+ktor = "3.1.2"
+koin = "4.0.3"
+composenativetray = "0.6.0"
+
+[libraries]
+androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+ktor-client-core = {module = "io.ktor:ktor-client-core", version.ref = "ktor"}
+ktor-client-cio = {module = "io.ktor:ktor-client-cio", version.ref = "ktor"}
+ktor-client-content-negotiation = {module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor"}
+ktor-serialization-kotlinx-json = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor"}
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
+
+kdroidfilter-composenativetray = { group = "io.github.kdroidfilter", name = "composenativetray", version.ref = "composenativetray" }
+
+[plugins]
+composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

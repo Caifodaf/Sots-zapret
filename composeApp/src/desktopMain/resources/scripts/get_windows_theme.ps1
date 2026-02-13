@@ -1,0 +1,2 @@
+$theme = Get-ItemPropertyValue -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name 'AppsUseLightTheme'
+if ($theme -eq 0) { Write-Output 'Dark' } else { Write-Output 'Light' } 
