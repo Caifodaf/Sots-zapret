@@ -9,5 +9,5 @@ object NamespaceProject {
     const val ANALOG_SERVICE_NAME_SEC = "discordfix_zapret"
     const val SOTS_SERVICE_NAME = "service for bypassing locks by Sots"
 
-    const val PLACER_NAME_FILE_CUSTOM_PROFILE = "PLACE YOUR CUSTOM PROFILES HERE | TXT/BAT"
+    const val PLACER_NAME_FILE_CUSTOM_PROFILE = "PLACE YOUR CUSTOM PROFILES HERE | TXT/BAT "
 }
