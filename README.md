@@ -1,6 +1,6 @@
 <div align="center">
 
-# Sots
+# <img width="24" height="24" alt="Sots" src="https://github.com/user-attachments/assets/8eac85a2-9f9d-4093-89a2-594e8aaca9a0" />   Sots
 
 Альтернатива https://github.com/bol-van/zapret-win-bundle.
 И изначальные варианты https://github.com/Flowseal/zapret-discord-youtube/tree/main
