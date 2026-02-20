@@ -1,0 +1,353 @@
+id,content,name,provider,service
+1,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=multisplit --dpi-desync-split-seqovl=568 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_4pda_to.bin"" --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=multisplit --dpi-desync-split-seqovl=568 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_4pda_to.bin"" --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=multisplit --dpi-desync-split-seqovl=568 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_4pda_to.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general,0,0
+2,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,fakedsplit --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fakedsplit-pattern=0x00 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,fakedsplit --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fakedsplit-pattern=0x00 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,fakedsplit --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fakedsplit-pattern=0x00 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,fakedsplit --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fakedsplit-pattern=0x00 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n3
+",general_alt_1,0,0
+3,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=multisplit --dpi-desync-split-seqovl=652 --dpi-desync-split-pos=2 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=multisplit --dpi-desync-split-seqovl=652 --dpi-desync-split-pos=2 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=multisplit --dpi-desync-split-seqovl=652 --dpi-desync-split-pos=2 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=multisplit --dpi-desync-split-seqovl=652 --dpi-desync-split-pos=2 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_2,0,0
+4,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,hostfakesplit --dpi-desync-fake-tls-mod=rnd,dupsid,sni=ya.ru --dpi-desync-hostfakesplit-mod=host=ya.ru,altorder=1 --dpi-desync-fooling=ts --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,hostfakesplit --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --dpi-desync-hostfakesplit-mod=host=www.google.com,altorder=1 --dpi-desync-fooling=ts --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,hostfakesplit --dpi-desync-fake-tls-mod=rnd,dupsid,sni=ya.ru --dpi-desync-hostfakesplit-mod=host=ya.ru,altorder=1 --dpi-desync-fooling=ts --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,hostfakesplit --dpi-desync-fake-tls-mod=rnd,dupsid,sni=ya.ru --dpi-desync-hostfakesplit-mod=host=ya.ru,altorder=1 --dpi-desync-fooling=ts --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_3,0,0
+5,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,multisplit --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=1000 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,multisplit --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=1000 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=1000 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=1000 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_4,0,0
+6,"--wf-tcp=443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-l3=ipv4 --filter-tcp=443,2053,2083,2087,2096,8443,1024-65535 --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=syndata,multidisorder --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=14 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n3
+",general_alt_5,0,0
+7,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_fake_tls_auto_alt_3,4,0
+8,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split --dpi-desync-autottl=2 --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin""
+",youtube_fix,0,1
+9,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split --dpi-desync-autottl=2 --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin""
+",youtube_fix_alt_1,0,1
+10,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split2 --dpi-desync-ttl=1 --dpi-desync-autottl=5 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split2 --dpi-desync-ttl=1 --dpi-desync-autottl=5 --dpi-desync-repeats=6 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin""
+",youtube_fix_ttk,3,1
+11,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split2 --dpi-desync-ttl=1 --dpi-desync-autottl=5 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,split2 --dpi-desync-ttl=1 --dpi-desync-autottl=5 --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin""
+",youtube_fix_ttk_alt_1,3,1
+12,"--wf-tcp=80,443,1024-65535 --wf-udp 443,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=443 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=2099 --dpi-desync=syndata --new ^
+--filter-tcp=5222 --dpi-desync=syndata --new ^
+--filter-tcp=5223 --dpi-desync=syndata --new ^
+--filter-tcp=8393-8400 --dpi-desync=syndata --new ^
+--filter-tcp=443,1024-65535 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n3
+",general_max_mgts_alt,2,0
+13,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin""
+",youtube_fix_mgts,2,1
+14,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin""
+",youtube_fix_mgts_alt,2,1
+15,"--wf-tcp 80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp 443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-fooling=md5sig --dpi-desync-fake-tls-mod=rnd,rndsni,padencap --new ^
+--filter-udp=443 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=10000000 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=2099 --dpi-desync=syndata --new ^
+--filter-tcp=5222 --dpi-desync=syndata --new ^
+--filter-tcp=5223 --dpi-desync=syndata --new ^
+--filter-tcp=8393-8400 --dpi-desync=syndata --new ^
+--filter-tcp=443,1024-65535 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-fooling=md5sig --dpi-desync-fake-tls-mod=rnd,rndsni,padencap --new ^
+--filter-udp=1024-65535 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_fake_tls_alt,4,0
+16,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,fakedsplit --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --dpi-desync-repeats=8 --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,fakedsplit --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --dpi-desync-repeats=8 --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,fakedsplit --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --dpi-desync-repeats=8 --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,fakedsplit --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --dpi-desync-repeats=8 --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_fake_tls_auto_alt,4,0
+17,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=10000000 --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=10000000 --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=10000000 --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=10000000 --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_fake_tls_auto_alt_2,4,0
+18,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,multidisorder --dpi-desync-split-pos=1,midsld --dpi-desync-repeats=11 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=0x00000000 --dpi-desync-fake-tls=^! --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,multidisorder --dpi-desync-split-pos=1,midsld --dpi-desync-repeats=11 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=0x00000000 --dpi-desync-fake-tls=^! --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=1,midsld --dpi-desync-repeats=11 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=0x00000000 --dpi-desync-fake-tls=^! --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=1,midsld --dpi-desync-repeats=11 --dpi-desync-fooling=badseq --dpi-desync-fake-tls=0x00000000 --dpi-desync-fake-tls=^! --dpi-desync-fake-tls-mod=rnd,dupsid,sni=www.google.com --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_fake_tls_auto,4,0
+19,"--wf-tcp 80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp 443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=8 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-autottl=3 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --dpi-desync=fake --dpi-desync-ttl=4 --dpi-desync-fake-tls-mod=rnd,rndsni,padencap --new ^
+--filter-udp=443 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=8 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-autottl=3 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=2099 --dpi-desync=syndata --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=10000000 --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=5222 --dpi-desync=syndata --new ^
+--filter-tcp=5223 --dpi-desync=syndata --new ^
+--filter-tcp=8393-8400 --dpi-desync=syndata --new ^
+--filter-tcp=443,1024-65535 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-ttl=4 --dpi-desync-fake-tls-mod=rnd,rndsni,padencap --new ^
+--filter-udp=1024-65535 --ipset=""%CLOUDFLARE_IPSET_PATH%"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n3
+",general_fake_tls,4,0
+20,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split --dpi-desync-autottl=5 --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq
+",general_max_alt_1,0,0
+21,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=split2 --dpi-desync-split-seqovl=652 --dpi-desync-split-pos=2 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq
+",general_max_alt_2,0,0
+22,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=split --dpi-desync-split-pos=1 --dpi-desync-autottl --dpi-desync-fooling=badseq --dpi-desync-repeats=8 ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata
+",general_max_alt_3,0,0
+23,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq
+",general_max_alt_4,0,0
+24,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-l3=ipv4 --filter-tcp=443 --dpi-desync=syndata ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq
+",general_max_alt_5,0,0
+25,"--wf-tcp=80,443 --wf-udp=443,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-l3=ipv4 --filter-tcp=443 --dpi-desync=syndata ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq
+",general_max_alt_6,0,0
+26,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_6,0,0
+27,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=multisplit --dpi-desync-split-pos=2,sniext+1 --dpi-desync-split-seqovl=679 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=multisplit --dpi-desync-split-pos=2,sniext+1 --dpi-desync-split-seqovl=679 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=multisplit --dpi-desync-split-pos=2,sniext+1 --dpi-desync-split-seqovl=679 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=syndata --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_7,0,0
+28,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake --dpi-desync-fake-tls-mod=none --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake --dpi-desync-fake-tls-mod=none --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-fake-tls-mod=none --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-fake-tls-mod=none --dpi-desync-repeats=6 --dpi-desync-fooling=badseq --dpi-desync-badseq-increment=2 --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_8,0,0
+29,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=hostfakesplit --dpi-desync-repeats=4 --dpi-desync-fooling=ts --dpi-desync-hostfakesplit-mod=host=ozon.ru --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=hostfakesplit --dpi-desync-repeats=4 --dpi-desync-fooling=ts --dpi-desync-hostfakesplit-mod=host=www.google.com --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=hostfakesplit --dpi-desync-repeats=4 --dpi-desync-fooling=ts,md5sig --dpi-desync-hostfakesplit-mod=host=ozon.ru --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=hostfakesplit --dpi-desync-repeats=4 --dpi-desync-fooling=ts --dpi-desync-hostfakesplit-mod=host=ozon.ru --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_9,0,0
+30,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fake-tls=""%BIN%tls_clienthello_4pda_to.bin"" --dpi-desync-fake-tls-mod=none --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fake-tls=""%BIN%tls_clienthello_4pda_to.bin"" --dpi-desync-fake-tls-mod=none --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fooling=ts --dpi-desync-fake-tls=^! --dpi-desync-fake-tls-mod=rnd,sni=www.google.com --dpi-desync-fake-tls=""%BIN%tls_clienthello_4pda_to.bin"" --dpi-desync-fake-tls-mod=none --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=12 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_10,0,0
+31,"--wf-tcp=80,443,2053,2083,2087,2096,8443,1024-65535 --wf-udp=443,19294-19344,50000-50100,1024-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=19294-19344,50000-50100 --filter-l7=discord,stun --dpi-desync=fake --dpi-desync-fake-discord=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-fake-stun=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-repeats=6 --new ^
+--filter-tcp=2053,2083,2087,2096,8443 --hostlist-domains=discord.media --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=654 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_max_ru.bin"" --dpi-desync-fake-tls=""%BIN%tls_clienthello_max_ru.bin"" --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-google.txt"" --ip-id=zero --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=681 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" --new ^
+--filter-tcp=80,443 --hostlist=""%LIST_PATH%list-general.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=654 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_max_ru.bin"" --dpi-desync-fake-tls=""%BIN%tls_clienthello_max_ru.bin"" --new ^
+--filter-udp=443 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-repeats=11 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80,443,1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --hostlist-exclude=""%LIST_PATH%list-exclude.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake,multisplit --dpi-desync-split-seqovl=654 --dpi-desync-split-pos=1 --dpi-desync-fooling=ts --dpi-desync-repeats=8 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_max_ru.bin"" --dpi-desync-fake-tls=""%BIN%tls_clienthello_max_ru.bin"" --new ^
+--filter-udp=1024-65535 --ipset=""%LIST_PATH%ipset-all.txt"" --ipset-exclude=""%LIST_PATH%ipset-exclude.txt"" --dpi-desync=fake --dpi-desync-autottl=2 --dpi-desync-repeats=10 --dpi-desync-any-protocol=1 --dpi-desync-fake-unknown-udp=""%BIN%quic_initial_www_google_com.bin"" --dpi-desync-cutoff=n2
+",general_alt_11,0,0
+32,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split --dpi-desync-autottl=5 --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 --wssize 1:6
+",general_max_rostelecom_beeline_alt_1,1,0
+33,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split --dpi-desync-split-seqovl=652 --dpi-desync-split-pos=2 --dpi-desync-split-seqovl-pattern=""%BIN%tls_clienthello_www_google_com.bin"" ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 --wssize 1:6
+",general_max_rostelecom_beeline_alt_2,1,0
+34,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=split --dpi-desync-split-pos=1 --dpi-desync-autottl --dpi-desync-fooling=badseq --dpi-desync-repeats=8 ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 --wssize 1:6
+",general_max_rostelecom_beeline_alt_3,1,0
+35,"--wf-tcp=80,443 --wf-udp=443,1400,596-599,50000-65535 ^
+--filter-udp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-udp=1400,596-599,50000-65535 --ipset=""%LIST_PATH%list-discord.txt"" --dpi-desync=fake --dpi-desync-any-protocol --dpi-desync-cutoff=d3 --dpi-desync-repeats=6 --new ^
+--filter-tcp=80 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --hostlist=""%LIST_PATH%list-general.txt"" --dpi-desync=fake,split2 --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=""%BIN%tls_clienthello_www_google_com.bin"" ^
+--filter-udp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake --dpi-desync-repeats=6 --dpi-desync-fake-quic=""%BIN%quic_initial_www_google_com.bin"" --new ^
+--filter-tcp=80 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --new ^
+--filter-tcp=443 --ipset=""%LIST_PATH%list-cloudflare.txt"" --dpi-desync=fake,multidisorder --dpi-desync-split-pos=midsld --dpi-desync-repeats=6 --dpi-desync-fooling=md5sig,badseq ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,split2 --wssize 1:6 ^
+--wf-l3=ipv4 --wf-tcp=443 --dpi-desync=syndata,disorder2 --wssize 1:6
+",general_max_rostelecom_beeline_alt_4,1,0
