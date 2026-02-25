@@ -27,7 +27,11 @@ class ProfileServiceImpl : ProfileService, KoinComponent {
         "general_max",
         "general_max_alt_1", "general_max_alt_2", "general_max_alt_3", "general_max_alt_4", "general_max_alt_5","general_max_alt_6","general_max_alt_7",
         "general_max_lol_alt_1", "general_max_lol_alt_2", "general_max_lol_alt_3", "general_max_lol_alt_4", "general_max_lol_alt_5", "general_max_lol_alt_6",
-       // Discord
+        // Игровые
+        "gaming",
+        "gaming_alt_1", "gaming_alt_2", "gaming_alt_3", "gaming_alt_4", "gaming_alt_5", "gaming_alt_6",
+        "gaming_alt_7", "gaming_alt_8", "gaming_alt_9", "gaming_alt_10", "gaming_alt_11", "gaming_alt_12",
+        // Discord
         "discord", "discord_fix_mgts", "discord_fix_alt", "discord_fix_lol",
         // Youtube
         "youtube_fix", "youtube_fix_alt_1", "youtube_fix_mgts", "youtube_fix_mgts_alt", "youtube_fix_ttk", "youtube_fix_ttk_alt_1",

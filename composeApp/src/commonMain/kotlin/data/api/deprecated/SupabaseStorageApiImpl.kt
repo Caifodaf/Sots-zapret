@@ -1,26 +1,26 @@
-package data.api
+package data.api.deprecated
 
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.request.get
-import io.ktor.client.request.header
-import io.ktor.client.statement.bodyAsText
-import io.ktor.http.HttpStatusCode
-import kotlinx.serialization.json.Json
-import util.path.PathFilesProject
+import domain.model.BugReportData
+import domain.model.HostsExtendData
 import domain.model.ProfilesData
 import domain.model.VersionData
-import domain.model.HostsExtendData
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
-import domain.model.BugReportData
+import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
-import util.interfaces.ILogger
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.put
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
+import util.interfaces.ILogger
+import util.path.PathFilesProject
 
 class SupabaseStorageApiImpl(
     private val logger: ILogger,

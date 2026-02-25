@@ -9,9 +9,11 @@ import presentation.viewmodel.GeneralViewmodel
 import presentation.viewmodel.RepositoryViewModel
 import presentation.viewmodel.SettingsViewModel
 import data.checker.ProfileNetworkCheckerImpl
+import data.checker.IProfileCheckLogWriter
+import data.checker.ProfileCheckLogWriterImpl
 import data.repo.WhitelistManagerImpl
 import data.api.ApiUpdateServiceImpl
-import data.api.SupabaseStorageApiImpl
+import data.api.deprecated.SupabaseStorageApiImpl
 import data.service.ProfileServiceImpl
 import data.service.ServiceManagerImpl
 import data.service.ProfileAdapterService
@@ -22,7 +24,9 @@ import domain.WinwsLauncherService
 import domain.repository.WhitelistManager
 import domain.HostsUpdateService
 import data.api.ApiUpdateService
-import data.api.SupabaseStorageApi
+import data.api.deprecated.SupabaseStorageApi
+import data.api.GithubRawLinkApi
+import data.api.GithubRawLinkApiImpl
 import domain.repository.ProfileService
 import data.service.HostsUpdateServiceImpl
 import util.impl.SystemThemeProviderImpl
@@ -36,32 +40,33 @@ import util.interfaces.ISystemScriptService
 import util.impl.IpApiProviderDetector
 import util.interfaces.IProviderDetector
 
+private const val APP_NAME = "Sots"
+private const val APP_DESCRIPTION = "Auto-start Sots app for bypassing locks"
+
+private fun resolveExePath(): String {
+    val fromProcess: String? = runCatching {
+        ProcessHandle.current().info().command().orElse(null)
+    }.getOrNull()
+
+    return fromProcess
+        ?.takeIf { it.endsWith(".exe", ignoreCase = true) }
+        ?: runCatching { System.getProperty("java.class.path") }.getOrNull()
+        ?: APP_NAME
+}
+
 val appModule = module {
     single { (scope: CoroutineScope) ->
-        val appName = "Sots"
-        val description = "Auto-start Sots app for bypassing locks"
-        val exePath = try {
-            val processPath = ProcessHandle.current().info().command().orElse(null)
-            if (processPath != null && processPath.endsWith(".exe", ignoreCase = true))
-                processPath else TODO()
-        } catch (_: Exception) {
-            System.getProperty("java.class.path")
-        }
-        val systemScriptService: ISystemScriptService = get()
-        val startupManager: IStartupManager = StartupManagerImpl(appName, exePath, systemScriptService, description)
-        SettingsViewModel(scope, startupManager)
+        SettingsViewModel(scope, get())
     }
     single { (scope: CoroutineScope) ->
         val settingsViewModel = get<SettingsViewModel> { parametersOf(scope) }
-        RepositoryViewModel(scope, settingsViewModel, get(), get(), get())
+        RepositoryViewModel(scope, settingsViewModel, get(), get(), get(), get(), get())
     }
-    single { (scope: CoroutineScope) ->
-        val settingsViewModel = get<SettingsViewModel> { parametersOf(scope) }
-        val repositoryViewModel = get<RepositoryViewModel> { parametersOf(scope) }
+    single { (scope: CoroutineScope, vmRepository: RepositoryViewModel, vmSettings: SettingsViewModel) ->
         GeneralViewmodel(
             viewModelScope = scope,
-            vmRepository = repositoryViewModel,
-            vmSettings = settingsViewModel
+            vmRepository = vmRepository,
+            vmSettings = vmSettings
         )
     }
     single<ILogger> { LoggerImpl(get()) }
@@ -69,15 +74,18 @@ val appModule = module {
 
     single<ServiceManager> { ServiceManagerImpl() }
     single<ProfileNetworkChecker> { ProfileNetworkCheckerImpl(get(), get(), get()) }
+    single<IProfileCheckLogWriter> { ProfileCheckLogWriterImpl(get()) }
     single<SupabaseStorageApi> { SupabaseStorageApiImpl(logger = get()) }
+    single<GithubRawLinkApi> { GithubRawLinkApiImpl(logger = get(), appPathProvider = get()) }
     single<ApiUpdateService> {
         ApiUpdateServiceImpl(
-            supabaseApi = get(),
+            githubRawApi = get(),
             settingsViewModel = get(),
             logger = get(),
             appPathProvider = get(),
         )
     }
+    single<IStartupManager> { StartupManagerImpl(APP_NAME, resolveExePath(), get(), APP_DESCRIPTION) }
     single<IAppPathProvider> { AppPathProviderImpl() }
     single<ProfileService> { ProfileServiceImpl() }
     single<ProfileAdapterService> { ProfileAdapterService() }
@@ -85,5 +93,5 @@ val appModule = module {
     single<WhitelistManager> { WhitelistManagerImpl(get()) }
     single<ISystemScriptService> { SystemScriptServiceImpl() }
     single<IProviderDetector> { IpApiProviderDetector(get()) }
-    single<HostsUpdateService> { HostsUpdateServiceImpl(supabaseApi = get(), logger = get()) }
+    single<HostsUpdateService> { HostsUpdateServiceImpl(githubRawLinkApi = get(), logger = get()) }
 }

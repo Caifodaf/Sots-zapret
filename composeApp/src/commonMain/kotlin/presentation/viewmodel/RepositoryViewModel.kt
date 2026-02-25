@@ -19,11 +19,12 @@ import kotlinx.coroutines.Job
 import data.api.ApiDownloadResult
 import data.api.ApiMergeResult
 import data.api.ApiUpdateService
+import data.api.GithubRawLinkApi
 import data.api.ProfilesDownloadResult
 import domain.repository.ProfileService
 import util.onFailureLog
 import util.path.NamespaceProject.APP_VERSION
-import data.api.SupabaseStorageApi
+import data.api.deprecated.SupabaseStorageApi
 import domain.model.BugReportData
 import java.nio.file.Files
 import java.nio.file.Path
@@ -32,6 +33,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import data.checker.IProfileCheckLogWriter
 import data.checker.ProfileCheckLogWriterImpl
+import data.service.ProfileAdapterService
 import util.interfaces.IAppPathProvider
 import util.interfaces.ISystemScriptService
 import util.interfaces.IProviderDetector
@@ -44,7 +46,8 @@ class RepositoryViewModel(
     private val appPathProvider: IAppPathProvider,
     private val systemScriptService: ISystemScriptService,
     private val providerDetector: IProviderDetector,
-    private val profileCheckLogWriter: IProfileCheckLogWriter = ProfileCheckLogWriterImpl(appPathProvider)
+    private val profileCheckLogWriter: IProfileCheckLogWriter = ProfileCheckLogWriterImpl(appPathProvider),
+    private val profileAdapterService : ProfileAdapterService
 ): KoinComponent {
     private val whitelistManager: WhitelistManager by inject()
     private val settingsViewModel: SettingsViewModel by inject()
@@ -319,7 +322,8 @@ class RepositoryViewModel(
                     var result: ProfileCheckResult
                     var exception: Exception? = null
                     try {
-                        result = profileNetworkChecker.checkProfileWithAllServices(profile, args)
+                        val  profileAdapt = profileAdapterService.adaptProfile(args)
+                        result = profileNetworkChecker.checkProfileWithAllServices(profile, profileAdapt)
                     } catch (e: CancellationException) {
                         result = ProfileCheckResult.Error("The checking was stopped by the user")
                         exception = null

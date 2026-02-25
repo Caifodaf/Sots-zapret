@@ -1,8 +1,9 @@
 package data.service
 
+import data.api.GithubRawLinkApi
 import domain.HostsUpdateService
 import domain.HostsUpdateResult
-import data.api.SupabaseStorageApi
+import data.api.deprecated.SupabaseStorageApi
 import util.interfaces.ILogger
 import util.interfaces.ISystemScriptService
 import org.koin.core.component.KoinComponent
@@ -15,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class HostsUpdateServiceImpl(
-    private val supabaseApi: SupabaseStorageApi,
+    private val githubRawLinkApi: GithubRawLinkApi,
     private val logger: ILogger
 ) : HostsUpdateService, KoinComponent {
     private val systemScriptService: ISystemScriptService by inject()
@@ -36,7 +37,7 @@ class HostsUpdateServiceImpl(
             }
 
             logger.info("[HostsUpdateService] Fetching hosts_extend list from API")
-            val apiResult = supabaseApi.getHostsExtendList()
+            val apiResult = githubRawLinkApi.getHostsList()
             
             if (apiResult.isFailure) {
                 val error = apiResult.exceptionOrNull()?.message ?: "Unknown error"

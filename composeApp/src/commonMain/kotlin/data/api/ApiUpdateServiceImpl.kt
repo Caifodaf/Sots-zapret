@@ -20,7 +20,7 @@ import kotlinx.serialization.json.Json
 import util.path.NamespaceProject.APP_VERSION
 
 class ApiUpdateServiceImpl(
-    private val supabaseApi: SupabaseStorageApi,
+    private val githubRawApi: GithubRawLinkApi,
     private val settingsViewModel: SettingsViewModel,
     private val logger: ILogger,
     private val appPathProvider: IAppPathProvider,
@@ -30,7 +30,7 @@ class ApiUpdateServiceImpl(
     override suspend fun checkForApiUpdates(): ApiUpdateResult = withContext(Dispatchers.IO) {
         try {
             val localApiVersion = settingsViewModel.getApiVersion() ?: "0.0.1"
-            val remoteResult = supabaseApi.getApiVersionList()
+            val remoteResult = githubRawApi.getApiVersionList()
             if (remoteResult.isSuccess) {
                 val remoteList = remoteResult.getOrNull().orEmpty()
                 logger.info("[ApiUpdateService] Results version on API: " + remoteList.joinToString { "type=${it.type}, version=${it.version}" })
@@ -56,7 +56,7 @@ class ApiUpdateServiceImpl(
     override suspend fun checkForApiAndAppUpdates(): ApiAndAppUpdateResult = withContext(Dispatchers.IO) {
         try {
             val localApiVersion = settingsViewModel.getApiVersion() ?: "0.0.1"
-            val remoteResult = supabaseApi.getApiVersionList()
+            val remoteResult = githubRawApi.getApiVersionList()
             if (remoteResult.isSuccess) {
                 val remoteList = remoteResult.getOrNull().orEmpty()
                 logger.info("[ApiUpdateService] Results version on API: " + remoteList.joinToString { "type=${it.type}, version=${it.version}" })
@@ -157,7 +157,7 @@ class ApiUpdateServiceImpl(
 
     private suspend fun saveProfilesFromApi() {
         logger.info("[ApiUpdateService] saveProfilesFromApi: start")
-        val profilesResult = supabaseApi.getProfilesList()
+        val profilesResult = githubRawApi.getProfilesList()
         if (profilesResult.isSuccess) {
             val profiles = profilesResult.getOrNull().orEmpty()
             val profilesDir = appPathProvider.getProfilesDir()
@@ -168,9 +168,9 @@ class ApiUpdateServiceImpl(
             Files.createDirectories(profilesDir)
             profiles.forEach { profile ->
                 val fileName = profile.name.trim() + ".txt"
-                val content = profileAdapterService.adaptProfile(profile.content, removeWinwsPath = false)
+                //val content = profileAdapterService.adaptProfile(profile.content, removeWinwsPath = false)
                 val filePath = profilesDir.resolve(fileName)
-                Files.writeString(filePath, content)
+                Files.writeString(filePath, profile.content)
                 logger.info("[ApiUpdateService] Profile saved: $fileName (service=${profile.service}, provider=${profile.provider})")
             }
             @Serializable

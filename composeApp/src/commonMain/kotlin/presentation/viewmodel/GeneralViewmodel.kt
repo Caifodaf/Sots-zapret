@@ -1,5 +1,6 @@
 package presentation.viewmodel
 
+import data.api.GithubRawLinkApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -40,6 +41,7 @@ class GeneralViewmodel(
     private val serviceManager: ServiceManager by inject()
     private val systemScriptService: ISystemScriptService by inject()
     private val hostsUpdateService: HostsUpdateService by inject()
+    private val githubRawLinkApi: GithubRawLinkApi by inject()
 
     enum class UrlBrowser{
         GIT, FAQ, README, DONAT
@@ -93,6 +95,11 @@ class GeneralViewmodel(
         vmSettings.getCurrentTheme()
 
         vmRepository.checkApiForUpdates()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            //val result = githubRawLinkApi.getProfilesList()
+            //logger.info("[GeneralViewmodel] result = ${result}")
+        }
     }
 
     private suspend fun checkAnyAnalogServiceRunning(): Boolean {
@@ -160,7 +167,7 @@ class GeneralViewmodel(
     )
 
     fun navigateTo(screen: Screen) {
-        _navigationStack.value = _navigationStack.value + screen
+        _navigationStack.value += screen
     }
 
     fun navigateBack(): Boolean {
@@ -390,6 +397,16 @@ class GeneralViewmodel(
     }
 
     fun updateHostsList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            logger.info("[GeneralViewmodel] getHostsList at startup: start")
+            githubRawLinkApi.getHostsList().onSuccess {
+                logger.info("[GeneralViewmodel] getHostsList at startup: loaded ${it.size} entries")
+            }.onFailure { e ->
+                logger.warn("[GeneralViewmodel] getHostsList at startup failed: ${e.message}")
+            }
+        }
+
+
         logger.info("[GeneralViewmodel] updateHostsList: start")
         if (_hostsUpdateButtonState.value == HostsUpdateButtonState.Updating) {
             logger.warn("[GeneralViewmodel] updateHostsList: already updating, ignoring request")

@@ -4,8 +4,9 @@ enum class ProfileServiceType(val value: Int) {
     CUSTOM(-1),
     UNIVERSAL(0),
     YOUTUBE(1),
-    DISCORD(2);
+    DISCORD(2),
     //LOL(3);
+    GAMING(5);
     companion object {
         fun fromInt(value: Int): ProfileServiceType = entries.find { it.value == value } ?: UNIVERSAL
     }
