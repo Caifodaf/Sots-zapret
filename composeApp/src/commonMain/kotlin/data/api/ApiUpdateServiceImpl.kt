@@ -4,14 +4,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import util.path.PathFilesProject
 import util.path.PathFilesProject.GENERAL_FILE_NAME
-import util.impl.ZipDownloader
 import util.interfaces.ILogger
 import util.interfaces.IAppPathProvider
 import presentation.viewmodel.SettingsViewModel
 import data.service.ProfileAdapterService
 import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.StandardCopyOption
 import domain.repository.WhitelistManager
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -82,32 +80,34 @@ class ApiUpdateServiceImpl(
 
     override suspend fun downloadApi(): ApiDownloadResult = withContext(Dispatchers.IO) {
         try {
-            val tempDir = Path.of(PathFilesProject.TEMP_DIR)
-            val zipUrl = PathFilesProject.SUPABASE_API_ZIP_URL
-            val unzipResult = ZipDownloader().downloadAndUnzip(zipUrl, tempDir)
-            if (unzipResult.isFailure) {
-                logger.error("[ApiUpdateService] Error downloading or unpacking zip: ${unzipResult.exceptionOrNull()?.message}")
-                return@withContext ApiDownloadResult.Error("Error downloading/unpacking API")
-            }
-            val unzipDir =
-                unzipResult.getOrNull() ?: return@withContext ApiDownloadResult.Error("Error unpacking archive")
-            return@withContext ApiDownloadResult.Success(unzipDir)
+            logger.info("[ApiUpdateService] downloadApi: start")
+            ensureDirectoriesExist()
+
+            githubRawApi.getApiLinksList()
+
+            githubRawApi.getWinFolder()
+
+            saveProfilesFromApi()
+
+            // archivePath больше не используется, но для совместимости
+            // возвращаем любую валидную директорию (локальную папку Sots)
+            val localRoot: Path = appPathProvider.getLocalSotsDir()
+            logger.info("[ApiUpdateService] downloadApi: completed, $localRoot")
+            return@withContext ApiDownloadResult.Success(localRoot)
         } catch (e: Exception) {
-            logger.error("[ApiUpdateService] Exception during API download: ${e.message}")
+            logger.error("[ApiUpdateService] Exception during API download: ${e.message}", e)
             return@withContext ApiDownloadResult.Error(e.message ?: "Unknown error")
         }
     }
 
     override suspend fun mergeApi(archivePath: Path, remoteApiVersion: String): ApiMergeResult = withContext(Dispatchers.IO) {
-        logger.info("[ApiUpdateService] mergeApi: start, archivePath=$archivePath, remoteApiVersion=$remoteApiVersion")
+        logger.info("[ApiUpdateService] mergeApi: start, remoteApiVersion=$remoteApiVersion")
         try {
-            val repoRoot = archivePath.toFile().listFiles()?.firstOrNull { it.isDirectory }?.toPath() ?: archivePath
-            ensureDirectoriesExist()
-            saveProfilesFromApi()
-            copyDirectoryFromRepo(repoRoot, "whitelist", appPathProvider.getWhitelistDir(), overwrite = true)
-           copyDirectoryFromRepo(repoRoot, "win", appPathProvider.getWinDir(), overwrite = false)
+            // После загрузки через GithubRaw локальные файлы уже синхронизированы.
+            // Здесь оставляем только логику слияния пользовательского вайтлиста
+            // с основным файлом и сохранение версии API.
             try {
-                logger.info("[ApiUpdateService] mainFile 1")
+                logger.info("[ApiUpdateService] mergeApi: merging user whitelist links into $GENERAL_FILE_NAME")
                 val whitelistManager: WhitelistManager by inject()
                 val userLinks = whitelistManager.getWhiteList()
                 val mainFile = appPathProvider.getWhitelistDir().resolve(GENERAL_FILE_NAME)
@@ -130,14 +130,10 @@ class ApiUpdateServiceImpl(
                 logger.error("[ApiUpdateService] Error saving API version: ${e.message}", e)
                 return@withContext ApiMergeResult.Error("Error saving API version: ${e.message}")
             }
-            try {
-                archivePath.toFile().deleteRecursively()
-            } catch (e: Exception) {
-                logger.warn("[ApiUpdateService] Failed to delete temporary files: ${e.message}")
-            }
+            logger.info("[ApiUpdateService] mergeApi (GithubRaw): success")
             return@withContext ApiMergeResult.Success
         } catch (e: Exception) {
-            logger.error("[ApiUpdateService] Exception during API merge: ${e.message}")
+            logger.error("[ApiUpdateService] Exception during API merge: ${e.message}", e)
             return@withContext ApiMergeResult.Error(e.message ?: "Unknown error")
         }
     }
@@ -185,35 +181,6 @@ class ApiUpdateServiceImpl(
             logger.error("[ApiUpdateService] Error getting profiles: ${profilesResult.exceptionOrNull()?.message}")
         }
         logger.info("[ApiUpdateService] saveProfilesFromApi: end")
-    }
-
-    private fun copyDirectoryFromRepo(repoRoot: Path, dirName: String, dst: Path, overwrite: Boolean) {
-        logger.info("[ApiUpdateService] copyDirectoryFromRepo: start, repoRoot=$repoRoot, dirName=$dirName, dst=$dst, overwrite=$overwrite")
-        val src = repoRoot.resolve(dirName)
-        if (Files.exists(src)) {
-            logger.info("[ApiUpdateService] Copying api/$dirName -> $dst (${if (overwrite) "with overwrite" else "only if different"})")
-            Files.walk(src).use { paths ->
-                paths.filter { Files.isRegularFile(it) }.forEach { srcFile ->
-                    val rel = src.relativize(srcFile)
-                    val dstFile = dst.resolve(rel)
-                    Files.createDirectories(dstFile.parent)
-                    if (dirName == "win") {
-                        if (!Files.exists(dstFile)) {
-                            Files.copy(srcFile, dstFile)
-                            logger.info("[ApiUpdateService] Copied file (win, no check): $srcFile -> $dstFile")
-                        } else {
-                            logger.info("[ApiUpdateService] Skipped (already exists, win): $srcFile")
-                        }
-                    } else if (dirName == "whitelist") {
-                        Files.copy(srcFile, dstFile, StandardCopyOption.REPLACE_EXISTING)
-                        logger.info("[ApiUpdateService] Copied/updated file (whitelist): $srcFile -> $dstFile")
-                    }
-                }
-            }
-        } else {
-            logger.warn("[ApiUpdateService] Directory api/$dirName not found in archive")
-        }
-        logger.info("[ApiUpdateService] copyDirectoryFromRepo: end, repoRoot=$repoRoot, dirName=$dirName, dst=$dst, overwrite=$overwrite")
     }
 
     private fun ensureDirectoriesExist() {

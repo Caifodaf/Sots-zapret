@@ -198,7 +198,7 @@ class ProfileNetworkCheckerImpl(
 
     override suspend fun checkProfileWithAllServices(profile: Profile, args: String): ProfileCheckResult =
         withContext(Dispatchers.IO) {
-            var checkResult: ProfileCheckResult? = null
+            val checkResult: ProfileCheckResult? = null
             try {
                 logger.info("[ProfileNetworkChecker] Starting check for all services for profile: ${profile.fileName}")
                 

@@ -9,9 +9,7 @@ sealed class ProfileCheckResult {
 }
 
 interface ProfileNetworkChecker {
-    /**
-     * Старый метод для обратной совместимости (будет удален)
-     */
+
     @Deprecated("Use checkProfileWithAllServices instead", ReplaceWith("checkProfileWithAllServices(profile, args)"))
     suspend fun checkProfile(profile: Profile, args: String, domain: String): ProfileCheckResult
     
