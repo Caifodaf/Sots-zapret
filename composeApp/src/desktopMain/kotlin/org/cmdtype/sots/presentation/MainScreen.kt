@@ -196,10 +196,9 @@ fun VersionBlock(vm: GeneralViewmodel) {
                 { vm.vmRepository.checkApiForUpdates() }
             }
             is RepositoryViewModel.DownloadState.AppUpdateAvailable -> {
+                val newVersion = (downloadState as RepositoryViewModel.DownloadState.AppUpdateAvailable).newVersion
                 {
-                    if (Desktop.isDesktopSupported()) {
-                        Desktop.getDesktop().browse(URI(util.path.PathFilesProject.URL_SOTS_PAGE_DOWNLOAD))
-                    }
+                    vm.vmRepository.downloadAndRunAppInstaller(newVersion)
                 }
             }
             else -> ({})

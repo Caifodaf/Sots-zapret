@@ -27,6 +27,8 @@ import data.api.ApiUpdateService
 import data.api.deprecated.SupabaseStorageApi
 import data.api.GithubRawLinkApi
 import data.api.GithubRawLinkApiImpl
+import data.api.AppInstallerDownloadService
+import data.api.AppInstallerDownloadServiceImpl
 import domain.repository.ProfileService
 import data.service.HostsUpdateServiceImpl
 import util.impl.SystemThemeProviderImpl
@@ -77,6 +79,12 @@ val appModule = module {
     single<IProfileCheckLogWriter> { ProfileCheckLogWriterImpl(get()) }
     single<SupabaseStorageApi> { SupabaseStorageApiImpl(logger = get()) }
     single<GithubRawLinkApi> { GithubRawLinkApiImpl(logger = get(), appPathProvider = get()) }
+    single<AppInstallerDownloadService> {
+        AppInstallerDownloadServiceImpl(
+            logger = get(),
+            appPathProvider = get()
+        )
+    }
     single<ApiUpdateService> {
         ApiUpdateServiceImpl(
             githubRawApi = get(),

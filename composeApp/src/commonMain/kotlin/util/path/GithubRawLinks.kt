@@ -25,4 +25,8 @@ object GithubRawLinks {
     // Версии в формате CSV (id, type, version)
     const val VERSIONS_CSV_URL =
         "https://raw.githubusercontent.com/Caifodaf/Sots-zapret/refs/heads/master/base/version_rows.csv"
+
+    // GitHub API: последний релиз приложения (для загрузки установщика)
+    const val LATEST_RELEASE_API_URL =
+        "https://api.github.com/repos/Caifodaf/Sots-zapret/releases/latest"
 }

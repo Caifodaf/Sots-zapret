@@ -21,6 +21,8 @@ import data.api.ApiMergeResult
 import data.api.ApiUpdateService
 import data.api.GithubRawLinkApi
 import data.api.ProfilesDownloadResult
+import data.api.AppInstallerDownloadService
+import data.api.AppInstallerDownloadResult
 import domain.repository.ProfileService
 import util.onFailureLog
 import util.path.NamespaceProject.APP_VERSION
@@ -39,6 +41,7 @@ import util.interfaces.ISystemScriptService
 import util.interfaces.IProviderDetector
 import domain.model.ProviderInfo
 import kotlinx.coroutines.CancellationException
+import kotlin.system.exitProcess
 
 class RepositoryViewModel(
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO),
@@ -57,6 +60,7 @@ class RepositoryViewModel(
     private val apiUpdateService: ApiUpdateService by inject()
     private val profileService: ProfileService by inject()
     private val supabaseStorageApi: SupabaseStorageApi by inject()
+    private val appInstallerDownloadService: AppInstallerDownloadService by inject()
 
     sealed class DownloadState {
         object Idle : DownloadState()
@@ -209,6 +213,24 @@ class RepositoryViewModel(
         }
     }
 
+    fun downloadAndRunAppInstaller(newVersion: String) {
+        coroutineScope.launch {
+            _downloadState.value = DownloadState.AppInstallerDownloading
+            when (val result = appInstallerDownloadService.downloadAndRunLatestInstaller()) {
+                is AppInstallerDownloadResult.Success -> {
+                    val currentApiVersion = settingsViewModel.getApiVersion() ?: ""
+                    logger.info("[RepositoryViewModel] App installer downloaded and started from ${result.installerPath}")
+                    _downloadState.value = DownloadState.Success(currentApiVersion.ifEmpty { newVersion })
+                    exitProcess(0)
+                }
+                is AppInstallerDownloadResult.Error -> {
+                    logger.error("[RepositoryViewModel] Error downloading or starting app installer: ${result.message}")
+                    _downloadState.value = DownloadState.AppInstallerDownloadError(result.message)
+                }
+            }
+        }
+    }
+
     fun removeWhiteListLink(link: String) {
         val currentList = _whiteListLinks.value
         if (currentList != null) {
@@ -260,8 +282,6 @@ class RepositoryViewModel(
             selectProfile(profile)
         }
     }
-
-
 
     private fun updateProfileWithStatuses(statuses: Map<String, ProfileCheckStatus>) {
         val currentProfiles = _profiles.value

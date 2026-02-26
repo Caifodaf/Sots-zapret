@@ -1,5 +1,6 @@
 package presentation.viewmodel
 
+import data.api.AppInstallerDownloadService
 import data.api.GithubRawLinkApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -95,11 +96,6 @@ class GeneralViewmodel(
         vmSettings.getCurrentTheme()
 
         vmRepository.checkApiForUpdates()
-
-        viewModelScope.launch(Dispatchers.IO) {
-            //val result = githubRawLinkApi.getProfilesList()
-            //logger.info("[GeneralViewmodel] result = ${result}")
-        }
     }
 
     private suspend fun checkAnyAnalogServiceRunning(): Boolean {

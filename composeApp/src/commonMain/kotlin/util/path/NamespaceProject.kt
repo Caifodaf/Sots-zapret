@@ -3,7 +3,7 @@ package util.path
 object NamespaceProject {
 
     const val APP_NAME = "Sots"
-    const val APP_VERSION = "0.9.21"
+    const val APP_VERSION = "0.9.22"
 
     const val ANALOG_SERVICE_NAME = "zapret"
     const val ANALOG_SERVICE_NAME_SEC = "discordfix_zapret"

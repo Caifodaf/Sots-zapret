@@ -89,8 +89,6 @@ class ApiUpdateServiceImpl(
 
             saveProfilesFromApi()
 
-            // archivePath больше не используется, но для совместимости
-            // возвращаем любую валидную директорию (локальную папку Sots)
             val localRoot: Path = appPathProvider.getLocalSotsDir()
             logger.info("[ApiUpdateService] downloadApi: completed, $localRoot")
             return@withContext ApiDownloadResult.Success(localRoot)
@@ -103,9 +101,6 @@ class ApiUpdateServiceImpl(
     override suspend fun mergeApi(archivePath: Path, remoteApiVersion: String): ApiMergeResult = withContext(Dispatchers.IO) {
         logger.info("[ApiUpdateService] mergeApi: start, remoteApiVersion=$remoteApiVersion")
         try {
-            // После загрузки через GithubRaw локальные файлы уже синхронизированы.
-            // Здесь оставляем только логику слияния пользовательского вайтлиста
-            // с основным файлом и сохранение версии API.
             try {
                 logger.info("[ApiUpdateService] mergeApi: merging user whitelist links into $GENERAL_FILE_NAME")
                 val whitelistManager: WhitelistManager by inject()
