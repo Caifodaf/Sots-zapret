@@ -1,5 +1,6 @@
 <div align="center">
-<img width="2212" height="1240" alt="SOTS_open" src="https://github.com/user-attachments/assets/436390eb-940e-4085-814b-104d9f3b0f2e" />
+
+<img width="1512" height="982" alt="SOTS_open" src="https://github.com/user-attachments/assets/554cda80-9e84-4179-ac96-8d40e019ffeb" />
 
 # <img width="24" height="24" alt="Sots" src="https://github.com/user-attachments/assets/8eac85a2-9f9d-4093-89a2-594e8aaca9a0" />   Sots
 
