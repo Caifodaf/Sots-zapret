@@ -1,4 +1,5 @@
 <div align="center">
+<img width="2212" height="1240" alt="SOTS_open" src="https://github.com/user-attachments/assets/436390eb-940e-4085-814b-104d9f3b0f2e" />
 
 # <img width="24" height="24" alt="Sots" src="https://github.com/user-attachments/assets/8eac85a2-9f9d-4093-89a2-594e8aaca9a0" />   Sots
 
@@ -69,7 +70,7 @@
 
 ## 📸 Интерфейс приложения
 
-
+<img width="3840" height="2160" alt="SOTS для гита" src="https://github.com/user-attachments/assets/f51aba6f-281b-4a49-a243-524208ccb2d6" />
 
 ## 🚀 Установка и использование
 
